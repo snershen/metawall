@@ -1,0 +1,22 @@
+.font-mono {
+  font-family: 'Azeret Mono', monospace;
+}
+
+.router-active {
+  color: #03438d;
+}
+
+.logo a {
+  color: #000;
+}
+
+.bg-normal {
+  background-image: url('@/assets/img/bg.svg');
+  background-size: cover;
+}
+
+.logo {
+  font-family: 'Paytone One', sans-serif;
+  font-size: 1.625rem;
+  color: #000;
+}
