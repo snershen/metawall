@@ -1,12 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import UserView from '../views/UserView.vue'
-import HomeView from '../views/HomeView.vue'
-import FollowerView from '../views/FollowerView.vue'
-import PostView from '../views/PostView.vue'
-import PostLikeView from '../views/PostLikeView.vue'
-import ProfileView from '../views/ProfileView.vue'
+
 import LoginView from '../views/LoginView.vue'
 import SignupView from '../views/SignupView.vue'
+
+import UserLayoutView from '../views/UserLayoutView.vue'
+import HomeView from '../views/HomeView.vue'
+import FollowingView from '../views/FollowingView.vue'
+import PersonalInfoView from '../views/PersonalInfoView.vue'
+import NewPostView from '../views/NewPostView.vue'
+import LikesView from '../views/LikesView.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -14,37 +17,38 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: UserView,
+      component: UserLayoutView,
       children: [
         {
           path: '',
           name: 'Home',
           component: HomeView
+        },
+        {
+          path: '/following',
+          name: 'Following',
+          component: FollowingView
+        },
+        {
+          path: '/personalinfo',
+          name: 'PersonalInfo',
+          component: PersonalInfoView
+        },
+        {
+          path: '/newpost',
+          name: 'NewPost',
+          component: NewPostView
           // component: () => import('../views/AboutView.vue')
         },
         {
-          path: '/followers',
-          name: 'Followers',
-          component: FollowerView
-          // component: () => import('../views/AboutView.vue')
-        },
-        {
-          path: '/post',
-          name: 'Post',
-          component: PostView
-          // component: () => import('../views/AboutView.vue')
-        },
-        {
-          path: '/like',
-          name: 'Like',
-          component: PostLikeView
-          // component: () => import('../views/AboutView.vue')
+          path: '/likes',
+          name: 'Likes',
+          component: LikesView
         },
         {
           path: '/profile',
           name: 'Profile',
           component: ProfileView
-          // component: () => import('../views/AboutView.vue')
         }
       ]
     },

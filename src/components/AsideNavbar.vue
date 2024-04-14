@@ -1,6 +1,6 @@
 <template>
   <aside class="border-2 border-black px-6 py-8 bg-white">
-    <RouterLink :to="{ name: 'Post' }">
+    <RouterLink :to="{ name: 'NewPost' }">
       <ButtonNormal
         extraClass="w-full mb-6 bg-primary text-white hover:bg-secondary hover:text-black"
         >張貼動態</ButtonNormal
@@ -15,7 +15,7 @@
       </li>
       <li class="group">
         <RouterLink
-          :to="{ name: 'Followers' }"
+          :to="{ name: 'Following' }"
           class="flex items-center font-bold group-hover:text-primary mb-5"
           ><span
             class="block border-2 border-black rounded-full w-[50px] h-[50px] flex items-center justify-center aspect-square bg-[#E2EDFA] me-4 group-hover:bg-primary group-hover:text-white"
@@ -25,7 +25,7 @@
       </li>
       <li class="group">
         <RouterLink
-          :to="{ name: 'Like' }"
+          :to="{ name: 'Likes' }"
           class="flex items-center font-bold group-hover:text-primary"
           ><span
             class="block border-2 border-black rounded-full w-[50px] h-[50px] flex items-center justify-center aspect-square bg-[#E2EDFA] me-4 group-hover:bg-primary group-hover:text-white"

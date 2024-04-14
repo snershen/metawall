@@ -5,7 +5,7 @@
       <div class="w-[9px] h-[9px] border-[1px] rounded-full border-[#707070] bg-[#FAA722]"></div>
       <div class="w-[9px] h-[9px] border-[1px] rounded-full border-[#707070] bg-[#83C51D]"></div>
     </div>
-    <div class="py-8 px-4 text-center">
+    <div class="py-8 px-4 text-center text-gray">
       <slot>目前尚無動態，新增一則貼文吧！</slot>
     </div>
   </div>

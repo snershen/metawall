@@ -3,20 +3,20 @@
   <template v-if="hasFollowers">
     <ul>
       <li>
-        <FollowerCard />
+        <ProfileCard />
       </li>
     </ul>
   </template>
   <template v-else>
-    <EmptyContent>目前尚未追蹤任何人</EmptyContent>
+    <ContentEmpty>目前尚未追蹤任何人</ContentEmpty>
   </template>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import TitleComponent from '@/components/TitleComponent.vue'
-import EmptyContent from '@/components/EmptyContent.vue'
-import FollowerCard from '@/components/FollowerCard.vue'
+import ContentEmpty from '@/components/ContentEmpty.vue'
+import ProfileCard from '@/components/ProfileCard.vue'
 
 const hasFollowers = ref(true)
 </script>

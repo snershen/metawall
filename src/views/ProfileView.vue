@@ -10,10 +10,18 @@
           >
           <p>987,987 人追蹤</p>
         </div>
-        <ButtonNormal
-          extraClass="bg-secondary text-black hover:bg-primary hover:text-white w-auto block px-[32px] py-[6px] shrink-0"
-          >追蹤</ButtonNormal
-        >
+        <template v-if="!isFollowed">
+          <ButtonNormal
+            extraClass="bg-secondary text-black hover:bg-primary hover:text-white w-auto block px-[32px] py-[6px] shrink-0"
+            >追蹤</ButtonNormal
+          >
+        </template>
+        <template v-else>
+          <ButtonNormal
+            extraClass="bg-[#EFECE7] text-black hover:bg-primary hover:text-white w-auto block px-[32px] py-[6px] shrink-0"
+            >取消追蹤</ButtonNormal
+          >
+        </template>
       </div>
     </div>
   </div>
@@ -22,7 +30,7 @@
     <PostComponent />
   </template>
   <template v-else>
-    <EmptyContent />
+    <ContentEmpty />
   </template>
 </template>
 
@@ -31,10 +39,11 @@ import { ref } from 'vue'
 
 import SearchComponent from '@/components/SearchComponent.vue'
 import PostComponent from '@/components/PostComponent.vue'
-import EmptyContent from '@/components/EmptyContent.vue'
+import ContentEmpty from '@/components/ContentEmpty.vue'
 import ButtonNormal from '@/components/ButtonNormal.vue'
 
-const hasContent = ref(true)
+const hasContent = ref(false)
+const isFollowed = ref(true)
 </script>
 
 <style scoped>

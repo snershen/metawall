@@ -3,7 +3,7 @@
   <template v-if="hasPost">
     <ul>
       <li>
-        <FollowerCard>
+        <ProfileCard>
           <div>
             <button type="button" class="px-4 font-bold">
               <IconGood class="text-primary inline w-5 h-5 mb-1" /><span class="block text-sm"
@@ -16,20 +16,20 @@
               >
             </button>
           </div>
-        </FollowerCard>
+        </ProfileCard>
       </li>
     </ul>
   </template>
   <template v-else>
-    <EmptyContent>目前尚未按讚任何貼文</EmptyContent>
+    <ContentEmpty>目前尚未按讚任何貼文</ContentEmpty>
   </template>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import TitleComponent from '@/components/TitleComponent.vue'
-import EmptyContent from '@/components/EmptyContent.vue'
-import FollowerCard from '@/components/FollowerCard.vue'
+import ContentEmpty from '@/components/ContentEmpty.vue'
+import ProfileCard from '@/components/ProfileCard.vue'
 import IconGood from '@/components/icons/IconGood.vue'
 import IconArrowCircle from '@/components/icons/IconArrowCircle.vue'
 
