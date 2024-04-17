@@ -1,31 +1,44 @@
 <template>
   <div
     class="p-6 border-[3px] rounded-lg border-black bg-white shadow-[0px_3px_0px_0px_rgba(0,0,0,1)]"
+    v-for="post in postStore.posts"
+    :key="post._id"
   >
     <!-- head -->
-    <div class="flex items-center mb-4" @click="toggleAction">
-      <img src="@/assets/img/user.png" alt="" class="me-4" width="45" height="45" />
-      <div>
-        <a
-          class="inline-block font-bold border-b-2 border-transparent hover:text-primary hover:border-b-2 hover:border-primary cursor-pointer"
-          >邊緣小杰</a
-        ><br />
-        <time class="text-xs text-gray">2022/1/10 12:00</time>
+    <template v-if="post.user">
+      <div class="flex items-center mb-4" @click="toggleAction">
+        <img
+          :src="post.user.photo"
+          :alt="post.user.name"
+          class="me-4 rounded-full"
+          width="45"
+          height="45"
+        />
+        <div>
+          <a
+            class="inline-block font-bold border-b-2 border-transparent hover:text-primary hover:border-b-2 hover:border-primary cursor-pointer"
+            >{{ post.user.name }}</a
+          ><br />
+          <time class="text-xs text-gray">{{ formatTime(post.createdAt) }}</time>
+        </div>
       </div>
-    </div>
+    </template>
 
     <!-- content -->
     <div class="mb-5" @click="toggleAction">
       <p class="mb-4">
-        外面看起來就超冷....<br />
-        我決定回被窩繼續睡....
+        {{ post.content }}
       </p>
-      <img src="@/assets/img/post.png" alt="圖片" class="border-black w-full" />
+      <template v-if="post.image !== ''">
+        <div class="border-2 border-black w-full overflow-hidden rounded-lg">
+          <img :src="post.image" alt="圖片" />
+        </div>
+      </template>
     </div>
 
     <!-- action -->
-    <div v-show="isShow">
-      <template v-if="hasGood">
+    <!-- <div v-show="isShow">
+      <template v-if="post.like > 0">
         <div class="mb-4 flex"><IconGood class="me-2 text-primary" />1</div>
       </template>
       <template v-else>
@@ -47,9 +60,9 @@
         >
           留言
         </button>
-      </div>
-      <!-- message -->
-      <ul>
+      </div> -->
+    <!-- message -->
+    <!-- <ul>
         <li>
           <div class="mb-4 bg-[rgba(239,236,231,0.3)] px-4 py-5 rounded-xl">
             <div class="flex items-center mb-1">
@@ -63,18 +76,46 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import IconGood from '@/components/icons/IconGood.vue'
+import { ref, onMounted } from 'vue'
+import { usePostStore } from '@/stores/postStore.js'
+// import IconGood from '@/components/icons/IconGood.vue'
 
-const hasGood = ref(true)
+const postStore = usePostStore()
 const isShow = ref(false)
 
 const toggleAction = () => {
   isShow.value = !isShow.value
 }
+
+const formatTime = (timeString) => {
+  const dateTime = new Date(timeString)
+  const year = String(dateTime.getFullYear())
+
+  const obj = {
+    month: String(dateTime.getMonth() + 1),
+    day: String(dateTime.getDate()),
+    hour: String(dateTime.getHours()),
+    minute: String(dateTime.getMinutes())
+  }
+
+  const arr = Object.keys(obj)
+
+  arr.forEach((item) => {
+    if (obj[item] < 10) {
+      obj[item] = 0 + obj[item]
+    }
+  })
+
+  const formattedTime = `${year}-${obj.month}-${obj.day} ${obj.hour}:${obj.minute}`
+  return formattedTime
+}
+
+onMounted(async () => {
+  await postStore.getPosts()
+})
 </script>
